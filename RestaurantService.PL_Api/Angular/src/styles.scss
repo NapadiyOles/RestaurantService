@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+a:not([href]):not([tabindex]) {
+  color: #007bff;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.dishes__item {
+
+  .delete{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+}

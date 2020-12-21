@@ -1,0 +1,27 @@
+<main role="main" class="pb-3">
+  <h4>Ingredient</h4>
+  <hr>
+  <div class="row">
+    <div class="col-md-8" *ngIf="form">
+      <form [formGroup]="form">
+        <div class="form-group">
+          <label class="custom-control-label">Name</label>
+          <input class="form-control input-validation-error" formControlName="name" type="text" data-val="true">
+          <span *ngIf="submitted && form.get('name')?.errors?.required" class="text-danger field-validation-error"
+                data-valmsg-for="Name" data-valmsg-replace="true"><span
+            class="">The Name field is required.</span></span>
+          <span *ngIf="submitted && form.get('name')?.errors?.pattern" class="text-danger field-validation-error"
+                data-valmsg-for="Name" data-valmsg-replace="true"><span
+            class="">The Name field is must match the regular expression.</span></span>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <input type="submit" (click)="submit()" value="Create" id="submit" class="btn btn-primary">
+          </div>
+        </div>
+        <input name="__RequestVerificationToken" type="hidden"
+               value="CfDJ8A287oKmsMNIjkzgVDx3Ib6YJZ_3Ie9k9TnwsD9R5WSy6rUPm5BUb9_gPoXOd2i4cv1UterhZGP1TOSlue226GN5OJJRR3JMDrjxNwTE8k3vn5h73eHNgUBiQNs_1D0JgSIu8YbeWsHeSdkdBLw1ML0">
+      </form>
+    </div>
+  </div>
+</main>

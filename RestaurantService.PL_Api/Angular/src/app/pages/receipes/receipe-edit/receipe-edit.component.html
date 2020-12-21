@@ -1,0 +1,82 @@
+  <main role="main" class="pb-3">
+    <h4>Recipe</h4>
+    <hr>
+    <div class="row">
+      <div class="col-md-8" *ngIf="form">
+        <form [formGroup]="form">
+          <div class="form-group">
+            <label class="custom-control-label">Name</label>
+            <input class="form-control input-validation-error" formControlName="name" type="text" data-val="true">
+            <span *ngIf="submitted && form.get('name')?.errors?.required" class="text-danger field-validation-error"
+                  data-valmsg-for="Name" data-valmsg-replace="true"><span
+              class="">The Name field is required.</span></span>
+            <span *ngIf="submitted && form.get('name')?.errors?.pattern" class="text-danger field-validation-error"
+                  data-valmsg-for="Name" data-valmsg-replace="true"><span
+              class="">The Name field must match the regular expression.</span></span>
+          </div>
+          <div class="form-group">
+            <label class="custom-control-label">Category</label>
+            <input class="form-control valid" type="text" formControlName="category" data-val="true">
+            <span *ngIf="submitted && form.get('category')?.errors?.required" class="text-danger field-validation-error"
+                  data-valmsg-for="Name" data-valmsg-replace="true"><span
+              class="">The Category field is required.</span></span>
+            <span *ngIf="submitted && form.get('category')?.errors?.pattern" class="text-danger field-validation-error"
+                  data-valmsg-for="Name" data-valmsg-replace="true"><span
+              class="">The Category field must match the regular expression.</span></span>
+          </div>
+          <div class="form-group time">
+            <label class="custom-control-label">Minutes</label>
+            <input class="form-control valid" type="number" formControlName="minutes" data-val="true">
+            <span *ngIf="submitted && form.get('minutes')?.errors?.required" class="text-danger field-validation-error"
+                  data-valmsg-for="Name" data-valmsg-replace="true"><span
+              class="">The Minutes field is required.</span></span>
+          </div>
+          <div class="form-group time">
+            <label class="custom-control-label">Seconds</label>
+            <input class="form-control valid" type="number" formControlName="seconds" data-val="true">
+            <span *ngIf="submitted && form.get('seconds')?.errors?.required" class="text-danger field-validation-error"
+                  data-valmsg-for="Name" data-valmsg-replace="true"><span
+              class="">The Seconds field is required.</span></span>
+          </div>
+          <div class="form-group">
+            <label class="custom-control-label">Price Per Gram</label>
+            <input class="form-control valid" type="number" formControlName="pricePerGram" data-val="true">
+            <span *ngIf="submitted && form.get('pricePerGram')?.errors?.required" class="text-danger field-validation-error"
+                  data-valmsg-for="Name" data-valmsg-replace="true"><span
+              class="">The Price Per Gram field is required.</span></span>
+          </div>
+          <div class="row"></div>
+          <div id="orderDishesContainer">
+            <div formArrayName="ingredients" *ngFor="let item of form?.get('ingredients')?.controls; let i = index" class="dishes__item"
+                 [formGroup]="item">
+              <div class="row order-dish-item" [formGroupName]="i">
+                <div class="col-md-4 order-dish-item__select">
+                  <label class="custom-control-label">Name</label>
+                  <select class="custom-select form-group valid" data-val="true"
+                          formControlName="name">
+                    <option *ngFor="let ingredient of ingredients" [ngValue]="ingredient.name">{{ingredient.name}}</option>
+                  </select>
+                  <span *ngIf="item.get('name')?.invalid" class="text-danger field-validation-error"
+                        data-valmsg-for="Name"
+                        data-valmsg-replace="true"><span>Ingredient is required.</span></span>
+                </div>
+                <div class="col-md-4 delete">
+                  <button (click)="deleteArrayIng(i)" class="btn btn-danger">Delete</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <input class="btn btn-primary" type="button" (click)="addIngredient()" id="btnAdd" value="Add ingredient">
+            </div>
+            <div class="col-md-4">
+              <input type="submit" (click)="submit()" value="Create" id="submit" class="btn btn-primary">
+            </div>
+          </div>
+          <input name="__RequestVerificationToken" type="hidden"
+                 value="CfDJ8A287oKmsMNIjkzgVDx3Ib6YJZ_3Ie9k9TnwsD9R5WSy6rUPm5BUb9_gPoXOd2i4cv1UterhZGP1TOSlue226GN5OJJRR3JMDrjxNwTE8k3vn5h73eHNgUBiQNs_1D0JgSIu8YbeWsHeSdkdBLw1ML0">
+        </form>
+      </div>
+    </div>
+  </main>

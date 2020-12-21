@@ -1,0 +1,36 @@
+  <main role="main" class="pb-3">
+    <h2>Orders</h2>
+    <p>
+      <a [routerLink]="['../order-edit/0']">New</a>
+    </p>
+    <div class="form-group">
+      <label class="custom-control-label">Search</label>
+      <input class="form-control input-validation-error" type="text" data-val="true"
+             [(ngModel)]="search.name">
+    </div>
+    <table class="table">
+      <tbody>
+      <tr class="table-borderless">
+        <th>Name</th>
+        <th>Total</th>
+        <th>Table number</th>
+      </tr>
+      <tr *ngFor="let item of orders  | filterBy: search">
+        <td>
+          {{item.name}}
+        </td>
+        <td>
+          {{item.sum}}
+        </td>
+        <td>
+          {{item.tableNumber}}
+        </td>
+        <td>
+          <a [routerLink]="['../order-edit/' + item.id]">Edit</a> |
+          <a [routerLink]="['../order-details/' + item.id]">Details</a> |
+          <a (click)="delete(item.id)">Delete</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </main>

@@ -1,0 +1,28 @@
+  <main role="main" class="pb-3">
+    <h2>Ingredients</h2>
+    <p>
+      <a [routerLink]="['../ingredient-edit/0']">New</a>
+    </p>
+    <div class="form-group">
+      <label class="custom-control-label">Search</label>
+      <input class="form-control input-validation-error" type="text" data-val="true"
+             [(ngModel)]="search.name">
+    </div>
+    <table class="table">
+      <tbody>
+      <tr class="table-borderless">
+        <th>Name</th>
+        <th></th>
+      </tr>
+      <tr *ngFor="let item of ingredients  | filterBy: search">
+        <td>
+          {{item.name}}
+        </td>
+        <td>
+          <a [routerLink]="['../ingredient-edit/' + s(item)]">Edit</a> |
+          <a (click)="delete(item.id)">Delete</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </main>

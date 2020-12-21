@@ -1,0 +1,21 @@
+<div  *ngIf="data">
+  <div class="display-4 border-bottom text-center">
+    <p>{{data.name}}</p>
+  </div>
+  <h2 class="row">
+    <div class="col text-right">
+      <p>TableNumber</p>
+    </div>
+    <div class="col">
+      <p>{{data.tableNumber}}</p>
+    </div>
+  </h2>
+  <h2 class="row">
+    <div class="col text-right">
+      <p>Dishes</p>
+    </div>
+    <div class="col">
+      <p *ngFor="let item of data.dishes">{{item.name}}</p>
+    </div>
+  </h2>
+</div>

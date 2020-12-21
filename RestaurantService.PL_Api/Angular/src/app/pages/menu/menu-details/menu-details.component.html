@@ -1,0 +1,21 @@
+<div class="container" *ngIf="details">
+  <div class="display-4 border-bottom text-center">
+    <p>{{details.name}}</p>
+  </div>
+  <h2 class="row">
+    <div class="col text-right">
+      <p>Time</p>
+    </div>
+    <div class="col">
+      <p>{{details.time.minutes}}:{{details.time.seconds}}</p>
+    </div>
+  </h2>
+  <h2 class="row">
+    <div class="col text-right">
+      <p>Ingredients</p>
+    </div>
+    <div class="col">
+      <p *ngFor="let item of details.ingredients">{{item}}</p>
+    </div>
+  </h2>
+</div>

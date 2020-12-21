@@ -1,0 +1,29 @@
+<div  *ngIf="data">
+  <div class="display-4 border-bottom text-center">
+    <p>{{data.name}}</p>
+  </div>
+  <h2 class="row">
+    <div class="col text-right">
+      <p>Time</p>
+    </div>
+    <div class="col">
+      <p>{{data.time.minutes}}:{{data.time.seconds}}</p>
+    </div>
+  </h2>
+  <h2 class="row">
+    <div class="col text-right">
+      <p>Price per gram</p>
+    </div>
+    <div class="col">
+      <p>{{data.pricePerGram}}</p>
+    </div>
+  </h2>
+  <h2 class="row">
+    <div class="col text-right">
+      <p>Ingredients</p>
+    </div>
+    <div class="col">
+      <p *ngFor="let item of data.ingredients">{{item}}</p>
+    </div>
+  </h2>
+</div>

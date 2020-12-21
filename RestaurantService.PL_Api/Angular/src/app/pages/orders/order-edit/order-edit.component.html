@@ -1,0 +1,68 @@
+  <main role="main" class="pb-3">
+    <h4>Order</h4>
+    <hr>
+    <div class="row">
+      <div class="col-md-8" *ngIf="form">
+        <form [formGroup]="form">
+          <div class="form-group">
+            <label class="custom-control-label">Name</label>
+            <input class="form-control input-validation-error" formControlName="name" type="text" data-val="true">
+            <span *ngIf="submitted && form.get('name')?.errors?.required" class="text-danger field-validation-error"
+                  data-valmsg-for="Name" data-valmsg-replace="true"><span
+              class="">The Name field is required.</span></span>
+            <span *ngIf="submitted && form.get('name')?.errors?.pattern" class="text-danger field-validation-error"
+                  data-valmsg-for="Name" data-valmsg-replace="true"><span
+              class="">The field Name must match the regular expression.</span></span>
+          </div>
+          <div class="form-group">
+            <label class="custom-control-label" for="TableNumber">Table number</label>
+            <input class="form-control valid" type="number" formControlName="tableNumber" data-val="true"
+                   data-val-required="The Table number field is required." id="TableNumber" name="TableNumber" value="0"
+                   aria-describedby="TableNumber-error">
+            <span class="text-danger field-validation-valid" data-valmsg-for="TableNumber"
+                  data-valmsg-replace="true"></span>
+          </div>
+          <div class="row"></div>
+          <div id="orderDishesContainer">
+            <div formArrayName="dishes" *ngFor="let item of form?.get('dishes')?.controls; let i = index" class="dishes__item"
+                 [formGroup]="item">
+              <div class="row order-dish-item" [formGroupName]="i">
+                <div class="col-md-4 order-dish-item__select">
+                  <label class="custom-control-label">Name</label>
+                  <select class="custom-select form-group valid" data-val="true"
+                          formControlName="name">
+                    <option *ngFor="let dish of dishNames" [ngValue]="dish">{{dish}}</option>
+                  </select>
+                  <span *ngIf="item.get('name')?.invalid" class="text-danger field-validation-error"
+                        data-valmsg-for="Name"
+                        data-valmsg-replace="true"><span>Dish is required.</span></span>
+                </div>
+                <div class="col-md-4">
+                  <label class="custom-control-label">Weight</label>
+                  <select id="weight" class="custom-select form-group valid"
+                          aria-describedby="weight-error" formControlName="weight">
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="200">200</option>
+                  </select>
+                </div>
+                <div class="col-md-4 delete">
+                  <button (click)="deleteArrayDishes(i)" class="btn btn-danger">Delete</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <input class="btn btn-primary" type="button" (click)="addDish()" id="btnAdd" value="Add dish">
+            </div>
+            <div class="col-md-4">
+              <input type="submit" (click)="submit()" value="Create" id="submit" class="btn btn-primary">
+            </div>
+          </div>
+          <input name="__RequestVerificationToken" type="hidden"
+                 value="CfDJ8A287oKmsMNIjkzgVDx3Ib6YJZ_3Ie9k9TnwsD9R5WSy6rUPm5BUb9_gPoXOd2i4cv1UterhZGP1TOSlue226GN5OJJRR3JMDrjxNwTE8k3vn5h73eHNgUBiQNs_1D0JgSIu8YbeWsHeSdkdBLw1ML0">
+        </form>
+      </div>
+    </div>
+  </main>

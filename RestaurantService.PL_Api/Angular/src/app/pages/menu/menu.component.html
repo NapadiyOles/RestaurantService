@@ -1,0 +1,29 @@
+<main role="main" class="pb-3">
+  <table class="table" *ngIf="menu">
+    <tbody>
+    <tr class="table-borderless">
+      <th>Name</th>
+      <th>50</th>
+      <th>100</th>
+      <th>200</th>
+    </tr>
+    <ng-container *ngFor="let item of menu">
+      <tr class="table-borderless">
+        <th class="display-4">
+          {{item.category}}
+        </th>
+      </tr>
+      <tr *ngFor="let dish of item?.dishes" [routerLink]="['./' + dish.id]" >
+        <td>
+          <a class="navbar-brand text-dark">
+            {{dish.name}}
+          </a>
+        </td>
+        <td *ngFor="let price of dish?.prices">
+          {{price}}
+        </td>
+      </tr>
+    </ng-container>
+    </tbody>
+  </table>
+</main>

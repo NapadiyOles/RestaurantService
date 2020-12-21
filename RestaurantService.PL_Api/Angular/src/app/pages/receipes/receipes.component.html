@@ -1,0 +1,29 @@
+  <main role="main" class="pb-3">
+
+    <h2>Recipes</h2>
+    <p>
+      <a [routerLink]="['../recipes-edit/0']">New</a>
+    </p>
+
+    <table class="table">
+      <tbody>
+      <tr class="table-borderless">
+        <th>Name</th>
+        <th>Time</th>
+      </tr>
+      <tr *ngFor="let item of receipes">
+        <td>
+          {{item.name}}
+        </td>
+        <td>
+          {{item.time.minutes}}:{{item.time.seconds}}
+        </td>
+        <td>
+          <a [routerLink]="['../recipes-edit/' + item.id]">Edit</a> |
+          <a [routerLink]="['../recipes-details/' + item.id]">Details</a> |
+          <a (click)="delete(item.id)">Delete</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </main>
